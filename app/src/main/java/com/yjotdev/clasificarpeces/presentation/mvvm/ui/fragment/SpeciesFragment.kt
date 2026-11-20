@@ -53,8 +53,6 @@ class SpeciesFragment : Fragment() {
         }
         binding.rvFishList.layoutManager = LinearLayoutManager(requireContext())
         binding.rvFishList.adapter = adapter
-        // Obtiene la lista de peces completa
-        viewModel.getRemoteData()
     }
 
     private fun setupClickListeners(){

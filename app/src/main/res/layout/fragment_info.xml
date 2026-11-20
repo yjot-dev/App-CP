@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
+    android:clipToPadding="false"
+    android:paddingBottom="@dimen/short4_dp"
     tools:context=".presentation.mvvm.ui.fragment.InfoFragment">
 
     <GridLayout

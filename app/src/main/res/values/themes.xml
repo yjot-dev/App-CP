@@ -19,7 +19,7 @@
         <item name="colorOnSurface">@color/colorOnSurfaceLight</item>
 
         <!-- Configuración adicional -->
-        <item name="android:statusBarColor">@color/colorPrimaryLight</item>
-        <item name="android:navigationBarColor">@color/colorSurfaceLight</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
 </resources>

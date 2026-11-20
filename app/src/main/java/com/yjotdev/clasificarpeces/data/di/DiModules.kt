@@ -1,6 +1,7 @@
 package com.yjotdev.clasificarpeces.data.di
 
 import android.content.Context
+import android.util.Log
 import androidx.room.Room
 import dagger.Module
 import dagger.Binds
@@ -10,6 +11,7 @@ import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 import dagger.Provides
 import retrofit2.Retrofit
+import okhttp3.logging.HttpLoggingInterceptor
 import com.yjotdev.clasificarpeces.data.repository.SpeciesApiRepositoryImpl
 import com.yjotdev.clasificarpeces.data.repository.SpeciesDaoRepositoryImpl
 import com.yjotdev.clasificarpeces.data.repository.StringRepositoryImpl
@@ -20,6 +22,7 @@ import com.yjotdev.clasificarpeces.data.local.dao.SpeciesDao
 import com.yjotdev.clasificarpeces.domain.repository.SpeciesApiRepository
 import com.yjotdev.clasificarpeces.domain.repository.SpeciesDaoRepository
 import com.yjotdev.clasificarpeces.domain.repository.StringRepository
+import com.yjotdev.clasificarpeces.BuildConfig
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -51,6 +54,20 @@ abstract class DiModules {
         @Singleton
         fun provideRetrofit(retrofitBuilder: RetrofitBuilder): Retrofit {
             return retrofitBuilder.getRetrofitInstance()
+        }
+
+        @Provides
+        @Singleton
+        fun provideLoggingInterceptor(): HttpLoggingInterceptor {
+            return HttpLoggingInterceptor { msm ->
+                Log.d("Https", msm)
+            }.apply {
+                level = if (BuildConfig.DEBUG) {
+                    HttpLoggingInterceptor.Level.BODY
+                } else {
+                    HttpLoggingInterceptor.Level.NONE
+                }
+            }
         }
 
         @Provides
